@@ -18,7 +18,6 @@ public class Queen implements Figure {
         this.field = gameField;
     }
 
-
     public void move(Point endPoint) {
         if (isValidMove(endPoint)) {
             System.out.println("cookie");
@@ -28,7 +27,7 @@ public class Queen implements Figure {
     }
 
     public boolean isValidMove(Point endPoint) {
-        if (point.equals(endPoint))
+        if (point.equals(endPoint) || !field.isValidPoint(endPoint))
             return false;
         Cell[][] gameField = field.getGameField();
 
@@ -37,20 +36,48 @@ public class Queen implements Figure {
         boolean isValidMove = true;
 
         if (startX == endX) {
-            for (int y = startY + 1; y < endY; y++)
-                if (!gameField[startX][y].isEmpty())
-                    return false;
+            if (startY < endY) {
+                for (int y = startY + 1; y < endY; y++)
+                    if (!gameField[startX][y].isEmpty())
+                        return false;
+            } else if (startY > endY) {
+                for (int y = startY - 1; y > endY; y--)
+                    if (!gameField[startX][y].isEmpty())
+                        return false;
+            }
             return true;
         } else if (startY == endY) {
-            for (int x = startX + 1; x < endX; x++)
-                if (!gameField[x][startY].isEmpty())
-                    return false;
-            return true;
+            if (startX < endX) {
+                for (int x = startX + 1; x < endX; x++)
+                    if (!gameField[x][startY].isEmpty())
+                        return false;
+            } else {
+                for (int x = startX - 1; x > endX; x--)
+                    if (!gameField[x][startY].isEmpty())
+                        return false;
+            } return true;
         } else if (abs(endX - startX) == abs(endY - startY)) {
-            for (int x = startX + 1, y = startY + 1; x < endX && y < endY; x++, y++)
-                if (!gameField[x][y].isEmpty())
-                    return false;
-            return true;
+            if (endX - startX > 0) {
+                if (endY - startY > 0) {
+                    for (int x = startX + 1, y = startY + 1; x < endX && y < endY; x++, y++)
+                        if (!gameField[x][y].isEmpty())
+                            return false;
+                } else {
+                    for (int x = startX + 1, y = startY - 1; x < endX && y > endY; x++, y--)
+                        if (!gameField[x][y].isEmpty())
+                            return false;
+                } return true;
+            } else {
+                if (endY - startY > 0) {
+                    for (int x = startX - 1, y = startY + 1; x > endX && y < endY; x--, y++)
+                        if (!gameField[x][y].isEmpty())
+                            return false;
+                } else {
+                    for (int x = startX - 1, y = startY - 1; x > endX && y > endY; x--, y--)
+                        if (!gameField[x][y].isEmpty())
+                            return false;
+                } return true;
+            }
         } return false;
     }
 

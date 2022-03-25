@@ -1,8 +1,8 @@
-q z z z z z z z
 z z z z z z z z
+z b z b z b z z
 z z z z z z z z
+z b z q z b z z
 z z z z z z z z
-z z z z b z z z
-z z z z z z z z
+z b z b z b z z
 z z z z z z z z
 z z z z z z z z
