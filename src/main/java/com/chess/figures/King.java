@@ -19,6 +19,10 @@ public class King implements Figure {
 
     }
 
+    public boolean isValidMove(Point endPoint) {
+        return false;
+    }
+
     public FigureType getFigureType() {return this.figureType;}
 
     public String getFigureName() { return this.figureName; }

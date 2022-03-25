@@ -17,6 +17,10 @@ public class Bishop implements Figure {
 
     public void move(Point endPoint) {}
 
+    public boolean isValidMove(Point endPoint) {
+        return false;
+    }
+
     public FigureType getFigureType() {return this.figureType;}
 
     public String getFigureName() { return this.figureName; }

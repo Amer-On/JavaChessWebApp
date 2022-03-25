@@ -20,6 +20,10 @@ public class Pawn implements Figure {
 
     }
 
+    public boolean isValidMove(Point endPoint) {
+        return false;
+    }
+
     public FigureType getFigureType() {
         return this.figureType;
     }

@@ -12,16 +12,20 @@ import com.chess.figures.*;
 public class Field {
 
     private Cell[][] gameField;
-    private final int LENGTH = 8, WIDTH = 8;
+    private final int LENGTH, WIDTH;
     private ArrayList<Figure> figureList = new ArrayList<Figure>();
 
-    public Field() {
-        this.gameField = createField();
+    public Field() {this("src/main/resources/static/classicChess.txt", 8, 8);}
+
+    public Field(String filePath, int length, int width) {
+        this.LENGTH = length;
+        this.WIDTH = width;
+        this.gameField = createField(filePath);
     }
 
-    private Cell[][] createField() {
+    private Cell[][] createField(String filePath) {
         Cell[][] gameField = new Cell[this.LENGTH][this.WIDTH];
-        char[][] charField = readFileToCharArr();
+        char[][] charField = readFileToCharArr(filePath);
 
         for (int i = 0; i < this.LENGTH; i++) {
             for (int j = 0; j < this.WIDTH; j++) {
@@ -62,7 +66,7 @@ public class Field {
         return gameField;
     }
 
-    private void printField() {
+    public void printField() {
         for (int i = 0; i < this.LENGTH; i++) {
             for (int j = 0; j < this.WIDTH; j++)
                 System.out.print(this.gameField[i][j].getFigureName() + " ");
@@ -70,10 +74,12 @@ public class Field {
         }
     }
 
-    private char[][] readFileToCharArr() {
-        return readFileToCharArr("src/main/resources/static/classicChess.txt",
-            this.LENGTH, this.WIDTH);
-    }
+//    private char[][] readFileToCharArr(file) {
+//        return readFileToCharArr("src/main/resources/static/classicChess.txt",
+//            this.LENGTH, this.WIDTH);
+//    }
+
+    public static char[][] readFileToCharArr(final String filePath) {return readFileToCharArr(filePath, 8, 8);}
 
     public static char[][] readFileToCharArr(final String filePath, int length, int width) {
         char[][] charField = new char[length][width];
@@ -93,6 +99,18 @@ public class Field {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public boolean isValidPoint(Point point) {
+        if (point.getY() < 0 || point.getX() < 0)
+            return false;
+
+        if (point.getX() >= this.LENGTH)
+            return false;
+        else if (point.getY() >= this.WIDTH)
+            return false;
+
+        return true;
     }
 
     private static void printCharArray(char[][] charArray) {

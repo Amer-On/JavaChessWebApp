@@ -22,6 +22,8 @@ public class Cell {
 
     public Point getPoint() { return this.point; }
 
+    public Figure getFigure() {return this.figure;}
+
     public String getFigureName() {
         if (figure != null)
             return figure.getFigureName();

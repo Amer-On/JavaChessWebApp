@@ -15,7 +15,13 @@ public class Rook implements Figure {
         this.gameField = gameField;
     }
 
-    public void move(Point endPoint) {}
+    public void move(Point endPoint) {
+
+    }
+
+    public boolean isValidMove(Point endPoint) {
+        return false;
+    }
 
     public FigureType getFigureType() {return this.figureType;}
 

@@ -11,30 +11,28 @@ public class Queen implements Figure {
     private final FigureType figureType = FigureType.QUEEN;
     private final String figureName = "q";
     private Point point;
-    Field gameField = null;
+    Field field = null;
 
     public Queen(Field gameField, Point point) {
         this.point = point;
-        this.gameField = gameField;
+        this.field = gameField;
     }
 
 
     public void move(Point endPoint) {
-//        if (isValidMove(this.point, endPoint, gameField)) {
-//            System.out.println("cookie");
-//        } else {
-//            throw new RuntimeException("Invalid move for figure");
-//        }
-
-
+        if (isValidMove(endPoint)) {
+            System.out.println("cookie");
+        } else {
+            throw new RuntimeException("Invalid move for figure");
+        }
     }
 
-    private boolean isValidMove(Point startPoint, Point endPoint, Cell[][] gameField) {
-        if (startPoint.equals(endPoint)) {
+    public boolean isValidMove(Point endPoint) {
+        if (point.equals(endPoint))
             return false;
-        }
+        Cell[][] gameField = field.getGameField();
 
-        int startX = startPoint.getX(), startY = startPoint.getY();
+        int startX = point.getX(), startY = point.getY();
         int endX = endPoint.getX(), endY = endPoint.getY();
         boolean isValidMove = true;
 
@@ -53,9 +51,7 @@ public class Queen implements Figure {
                 if (!gameField[x][y].isEmpty())
                     return false;
             return true;
-        } else {
-            return false;
-        }
+        } return false;
     }
 
     public FigureType getFigureType() {return this.figureType;}

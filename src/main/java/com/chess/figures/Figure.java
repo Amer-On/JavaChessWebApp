@@ -8,6 +8,8 @@ public interface Figure {
 
     void move(Point endPoint);
 
+    boolean isValidMove(Point endPoint);
+
     String getFigureName();
 //    default String getFigureName() {return this.figureName;}
 
