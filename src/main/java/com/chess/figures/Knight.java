@@ -5,28 +5,32 @@ import com.chess.game.Point;
 
 public class Knight implements Figure {
 
-    private final FigureType figureType = FigureType.KNIGHT;
-    private final String figureName = "k";
-    Point point;
-    Field gameField;
+  private final FigureType figureType = FigureType.KNIGHT;
+  private final String figureName = "k";
+  Point point;
+  Field gameField;
 
-    public Knight(Field gameField, Point point) {
-        this.point = point;
-        this.gameField = gameField;
-    }
+  public Knight(Field gameField, Point point) {
+    this.point = point;
+    this.gameField = gameField;
+  }
 
-    public void move(Point endPoint) {
+  public void move(Point endPoint) {
 
-    }
-
-
-    public boolean isValidMove(Point endPoint) {
-        return false;
-    }
+  }
 
 
-    public FigureType getFigureType() {return this.figureType;}
+  public boolean isValidMove(Point endPoint) {
+    return false;
+  }
 
-    public String getFigureName() {return this.figureName;}
+
+  public FigureType getFigureType() {
+    return this.figureType;
+  }
+
+  public String getFigureName() {
+    return this.figureName;
+  }
 
 }
